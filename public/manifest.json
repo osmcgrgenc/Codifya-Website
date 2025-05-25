@@ -1,0 +1,27 @@
+{
+  "name": "Codifya Software",
+  "short_name": "Codifya",
+  "description": "Codifya Software - Modern Dijital Çözümler",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#181C23",
+  "theme_color": "#FFD700",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon_io/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon_io/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon_io/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+} 
