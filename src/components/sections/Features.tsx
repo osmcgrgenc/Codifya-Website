@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import useSWR from 'swr';
 import { getFeatures, Feature } from '@/lib/api';
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary } from '../ErrorBoundary';
 
 // Icon components
 const TechIcon = () => (
