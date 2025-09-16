@@ -1,35 +1,37 @@
 import { NextResponse } from 'next/server';
 
-// Örnek veri
-const testimonials = [
-  {
-    id: '1',
-    name: 'Ahmet Yılmaz',
-    role: 'CEO, TechStart',
-    content: 'Codifya ile çalışmak harika bir deneyimdi. Profesyonel ekip ve kaliteli iş çıkardılar.',
-    avatar: '/avatars/ahmet.jpg',
-  },
-  {
-    id: '2',
-    name: 'Ayşe Demir',
-    role: 'CTO, InnovateCo',
-    content: 'Modern ve ölçeklenebilir çözümler sundular. Kesinlikle tavsiye ediyorum.',
-    avatar: '/avatars/ayse.jpg',
-  },
-  {
-    id: '3',
-    name: 'Mehmet Kaya',
-    role: 'Kurucu, NextGen',
-    content: 'Projemizi zamanında ve bütçe dahilinde tamamladılar. Mükemmel bir iş çıkardılar.',
-    avatar: '/avatars/mehmet.jpg',
-  },
-];
-
 export async function GET() {
-  // Cache-Control header'ı ekle
-  const headers = {
-    'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
-  };
+  try {
+    const testimonials = [
+      {
+        id: '1',
+        name: 'Ahmet Yılmaz',
+        role: 'CEO, TechStart',
+        content: 'Codifya ekibi ile çalışmak harika bir deneyimdi. Projemizi zamanında ve beklentilerimizin üzerinde teslim ettiler.',
+        avatar: '/avatars/avatar1.jpg'
+      },
+      {
+        id: '2',
+        name: 'Elif Kaya',
+        role: 'Pazarlama Müdürü, DigitalCorp',
+        content: 'Web sitemizin yeniden tasarımında gösterdikleri profesyonellik ve yaratıcılık gerçekten etkileyiciydi.',
+        avatar: '/avatars/avatar2.jpg'
+      },
+      {
+        id: '3',
+        name: 'Mehmet Demir',
+        role: 'Kurucu, E-Shop',
+        content: 'E-ticaret platformumuz sayesinde satışlarımız %300 arttı. Teknik destek ekibi de çok yardımcı oluyor.',
+        avatar: '/avatars/avatar3.jpg'
+      }
+    ];
 
-  return NextResponse.json(testimonials, { headers });
-} 
+    return NextResponse.json(testimonials);
+  } catch (error) {
+    console.error('Testimonials API error:', error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}

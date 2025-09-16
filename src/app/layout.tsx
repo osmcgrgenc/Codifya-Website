@@ -28,13 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr">
+    <html lang="tr" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon_io/favicon.ico" />
         <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png" />
-        <meta name="theme-color" content="#FFD700" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Codifya Software" />
         <meta property="og:description" content="Codifya Software - Modern Dijital Çözümler" />
@@ -47,8 +47,10 @@ export default function RootLayout({
         <meta name="twitter:image" content="/favicon_io/android-chrome-512x512.png" />
         <link rel="canonical" href="https://codifya.com/" />
         <meta charSet="utf-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
