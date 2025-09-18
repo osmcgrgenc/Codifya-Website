@@ -5,6 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { PageHero } from "@/components/layout/PageHero";
+import { Container } from "@/components/ui/Container";
+import { Card } from "@/components/ui/Card";
 
 export const dynamic = "force-static";
 
@@ -34,37 +37,55 @@ export default function BlogPage() {
     };
   });
 
-  // Header yüksekliği: 64px (h-16), Footer yüksekliği: 48px (örnek)
-  // min-h-[calc(100vh-112px)]
   return (
-    <>
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <div className="max-w-3xl mx-auto py-16 px-4 min-h-[calc(100vh-445px)]">
-        <h1 className="text-4xl font-bold mb-8 text-primary">Blog</h1>
-        <div className="space-y-8">
+      <main className="space-y-12 pb-24 pt-28">
+        <PageHero
+          eyebrow="Blog"
+          title="Ürün stratejisi, tasarım ve mühendislik üzerine içgörüler"
+          description="Codifya ekibinin deneyimlerinden, saha çalışmalarından ve güncel trendlerden derlediğimiz makaleleri keşfedin."
+          align="center"
+        />
+
+        <Container className="grid gap-6 lg:grid-cols-3">
           {posts.map((post) => (
-            <Link key={post.slug} href={`/company/blog/${post.slug}`} className="block group">
-              <div className="flex items-center space-x-4">
-                {post.cover && (
-                  <Image
-                    src={post.cover}
-                    alt={post.title}
-                    width={80}
-                    height={80}
-                    className="rounded-lg object-cover"
-                  />
-                )}
-                <div>
-                  <h2 className="text-2xl font-semibold text-primary group-hover:text-text transition-colors">{post.title}</h2>
-                  <p className="text-sm text-secondary mb-1">{post.date} &bull; {post.author}</p>
-                  <p className="text-base text-gray-400">{post.summary}</p>
-                </div>
-              </div>
+            <Link key={post.slug} href={`/company/blog/${post.slug}`}>
+              <Card>
+                <article className="space-y-5">
+                  {post.cover ? (
+                    <div className="overflow-hidden rounded-2xl">
+                      <Image
+                        src={post.cover}
+                        alt={post.title}
+                        width={640}
+                        height={360}
+                        className="h-40 w-full object-cover"
+                      />
+                    </div>
+                  ) : null}
+                  <div className="space-y-2">
+                    <p className="text-xs uppercase tracking-widest text-secondary/70">{post.date}</p>
+                    <h2 className="text-xl font-semibold text-foreground">{post.title}</h2>
+                    <p className="text-sm text-secondary">{post.summary}</p>
+                  </div>
+                  <div className="flex items-center justify-between text-xs font-semibold text-secondary/70">
+                    <span>{post.author}</span>
+                    <span className="inline-flex items-center gap-1 text-primary">
+                      Devamını oku
+                      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="M12 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </article>
+              </Card>
             </Link>
           ))}
-        </div>
-      </div>
+        </Container>
+      </main>
       <Footer />
-    </>
+    </div>
   );
-} 
+}

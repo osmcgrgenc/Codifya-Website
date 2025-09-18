@@ -135,3 +135,7 @@ button:focus-visible {
   background: var(--primary);
   color: white;
 }
+
+section[id] {
+  scroll-margin-top: 120px;
+}

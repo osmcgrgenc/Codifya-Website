@@ -1,6 +1,10 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Metadata } from "next";
+import { PageHero } from "@/components/layout/PageHero";
+import { Container } from "@/components/ui/Container";
+import { Card } from "@/components/ui/Card";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export const metadata: Metadata = {
   title: "UI/UX Design Hizmetleri | Codifya",
@@ -20,161 +24,115 @@ const features = [
   },
   {
     title: "Wireframe & Prototip",
-    description: "Hızlı ve etkili wireframe'ler ile kullanıcı deneyimini test ediyoruz.",
+    description: "Hızlı ve etkili prototiplerle hipotezleri test ediyoruz.",
     icon: "📐",
   },
   {
     title: "UI Tasarım",
-    description: "Modern ve kullanıcı dostu arayüzler tasarlıyoruz.",
+    description: "Markanızla uyumlu, ölçeklenebilir tasarım sistemleri oluşturuyoruz.",
     icon: "🎨",
   },
   {
-    title: "UX Tasarım",
-    description: "Kullanıcı deneyimini en üst düzeye çıkaran akıcı ve etkili tasarımlar.",
+    title: "UX Strateji",
+    description: "Kullanıcı yolculuklarını analiz ederek akıcı deneyimler tasarlıyoruz.",
     icon: "✨",
   },
   {
     title: "Kullanılabilirlik Testi",
-    description: "Gerçek kullanıcılarla testler yaparak tasarımı optimize ediyoruz.",
+    description: "Gerçek kullanıcı testleriyle tasarımları optimize ediyoruz.",
     icon: "✅",
   },
   {
-    title: "Responsive Tasarım",
-    description: "Tüm cihazlarda mükemmel görünen ve çalışan tasarımlar.",
-    icon: "📱",
+    title: "DesignOps",
+    description: "Tasarım ve geliştirme ekipleri arasında tutarlı süreçler kuruyoruz.",
+    icon: "⚙️",
   },
 ];
 
 const process = [
   {
-    title: "Keşif",
-    description: "Projenin hedeflerini ve kullanıcı ihtiyaçlarını analiz ediyoruz.",
     step: "01",
+    title: "Keşif",
+    description: "İş hedeflerini, kullanıcı ihtiyaçlarını ve mevcut deneyimi analiz ediyoruz.",
   },
   {
-    title: "Araştırma",
-    description: "Rakip analizi ve kullanıcı araştırması yapıyoruz.",
     step: "02",
+    title: "Araştırma",
+    description: "Persona, journey ve servis blueprint gibi çıktılarını oluşturuyoruz.",
   },
   {
-    title: "Tasarım",
-    description: "Wireframe'ler ve prototipler oluşturuyoruz.",
     step: "03",
+    title: "Tasarım",
+    description: "Wireframe, prototip ve görsel tasarımları iteratif şekilde geliştiriyoruz.",
   },
   {
-    title: "Test",
-    description: "Kullanıcı testleri ile tasarımı optimize ediyoruz.",
     step: "04",
+    title: "Test",
+    description: "Kullanıcı testleri ve A/B deneyleriyle deneyimi doğruluyoruz.",
   },
   {
-    title: "Geliştirme",
-    description: "Tasarımı kodlayarak hayata geçiriyoruz.",
     step: "05",
+    title: "Entegrasyon",
+    description: "Geliştirici ekipleriyle ortak çalışarak tasarım sistemini devreye alıyoruz.",
   },
 ];
 
 export default function UIUXDesignPage() {
   return (
-    <>
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main>
-        {/* Hero Section */}
-        <section className="relative h-[60vh] flex items-center justify-center bg-gradient-to-r from-primary to-primary-dark">
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="relative z-10 text-center text-white px-4">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              UI/UX Design Hizmetleri
-            </h1>
-            <p className="text-xl md:text-2xl max-w-2xl mx-auto">
-              Kullanıcı odaklı, modern ve etkileyici tasarım çözümleri
-            </p>
-          </div>
-        </section>
+      <main className="space-y-16 pb-24 pt-28">
+        <PageHero
+          eyebrow="Tasarım"
+          title="Doğru probleme odaklanan kullanıcı deneyimleri"
+          description="Araştırma odaklı yaklaşımımızla karmaşık iş süreçlerini kullanıcılar için sezgisel deneyimlere dönüştürüyoruz."
+        />
 
-        {/* Features Section */}
-        <section className="py-20 bg-gray-50 dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Tasarım Hizmetlerimiz
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                Kullanıcı deneyimini en üst düzeye çıkaran çözümler
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section>
+          <Container className="space-y-10">
+            <SectionHeader
+              align="left"
+              eyebrow="Hizmet kapsamı"
+              title="UX ve UI uzmanlığını tek çatı altında topluyoruz"
+              subtitle="Stratejiden görsel tasarıma kadar uçtan uca tasarım hizmeti sunuyoruz."
+            />
+            <div className="grid gap-6 lg:grid-cols-3">
               {features.map((feature) => (
-                <div
-                  key={feature.title}
-                  className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {feature.description}
-                  </p>
-                </div>
+                <Card key={feature.title}>
+                  <div className="space-y-3">
+                    <span className="text-3xl" aria-hidden>{feature.icon}</span>
+                    <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
+                    <p className="text-sm text-secondary">{feature.description}</p>
+                  </div>
+                </Card>
               ))}
             </div>
-          </div>
+          </Container>
         </section>
 
-        {/* Process Section */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Tasarım Sürecimiz
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                Başarılı projeler için izlediğimiz adımlar
-              </p>
-            </div>
-            <div className="space-y-12">
+        <section>
+          <Container className="space-y-10">
+            <SectionHeader
+              align="left"
+              eyebrow="Süreç"
+              title="Her projede deneyimlediğimiz metodoloji"
+              subtitle="Şeffaf iletişim ve düzenli teslimlerle projenizi birlikte ilerletiyoruz."
+            />
+            <div className="grid gap-6 lg:grid-cols-5">
               {process.map((step) => (
-                <div
-                  key={step.step}
-                  className="flex items-start space-x-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
-                >
-                  <div className="flex-shrink-0 w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold">
-                    {step.step}
+                <Card key={step.step}>
+                  <div className="space-y-3">
+                    <span className="text-sm font-semibold uppercase tracking-[0.4em] text-secondary/70">{step.step}</span>
+                    <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
+                    <p className="text-sm text-secondary">{step.description}</p>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
+                </Card>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-primary">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-white mb-8">
-              Projenizi Hayata Geçirelim
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Kullanıcı deneyimini en üst düzeye çıkaran tasarım çözümleri için
-              bizimle iletişime geçin.
-            </p>
-            <a
-              href="/contact"
-              className="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              İletişime Geçin
-            </a>
-          </div>
+          </Container>
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

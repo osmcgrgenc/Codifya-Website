@@ -1,245 +1,177 @@
 "use client";
-import { useState, FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import Image from "next/image";
+import { Container } from "@/components/ui/Container";
+import { Card } from "@/components/ui/Card";
+
+const stats = [
+  { label: "Tamamlanan Proje", value: "120+" },
+  { label: "Memnuniyet Oranı", value: "%98" },
+  { label: "Uzmanlık Alanı", value: "15" },
+];
+
+const partners = ["TechStart", "Finora", "Retailfy", "HealthPlus", "Neovista"];
+
+const roadmap = [
+  {
+    title: "Keşif Atölyesi",
+    description: "İhtiyaçlarınızı derinlemesine anlayarak stratejik yol haritası çıkarıyoruz.",
+  },
+  {
+    title: "Deneyim Tasarımı",
+    description: "Kullanıcı araştırmalarıyla desteklenmiş arayüz ve deneyim tasarımları oluşturuyoruz.",
+  },
+  {
+    title: "Ürün Geliştirme",
+    description: "Çevik metodolojilerle hızlı iterasyonlar eşliğinde geliştirme sürecini yürütüyoruz.",
+  },
+];
 
 export default function Hero() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (!email) return;
 
     setIsLoading(true);
 
-    // Simulate API call
     setTimeout(() => {
       setSubmitted(true);
       setIsLoading(false);
       setEmail("");
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1000);
+      setTimeout(() => setSubmitted(false), 4000);
+    }, 900);
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-background via-muted to-background min-h-screen flex items-center">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <section className="relative isolate overflow-hidden pb-24 pt-32 sm:pt-40">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/15 via-background to-accent/10" />
+      <div className="absolute inset-x-0 top-[6rem] -z-10 h-[28rem] skew-y-3 bg-gradient-to-r from-primary/20 via-transparent to-accent/20 blur-3xl" />
+      <div className="absolute left-1/2 top-16 -z-10 h-64 w-64 -translate-x-1/2 rounded-full bg-primary/25 blur-3xl sm:h-80 sm:w-80" />
 
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-bounce-slow"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 bg-accent/20 rounded-full blur-xl animate-bounce-slow"></div>
+      <Container className="relative grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="space-y-10">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary shadow-[0_10px_30px_-20px_rgba(59,130,246,0.6)]">
+            <span className="h-2 w-2 rounded-full bg-primary" />
+            Kurumsal Dijital Dönüşüm Ajansı
+          </span>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
-          <div className="lg:col-span-6 animate-fade-in">
-            <div className="mb-6">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
-                🚀 Dijital Dönüşümde Lideriz
-              </span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-              <span className="block">Dijital Geleceğinizi</span>
-              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Birlikte İnşa Edelim
-              </span>
+          <div className="space-y-6">
+            <h1 className="text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+              Stratejiden ürüne kadar <span className="bg-gradient-to-r from-primary via-accent to-primary/80 bg-clip-text text-transparent">uçtan uca dijital deneyimler</span> tasarlıyoruz.
             </h1>
-
-            <p className="mt-6 text-lg sm:text-xl text-secondary leading-relaxed">
-              Modern teknolojiler ve yenilikçi çözümlerle işletmenizi dijital
-              dünyada öne çıkarıyoruz. Web&apos;den mobile, e-ticaretten bulut
-              çözümlerine kadar her alanda yanınızdayız.
+            <p className="max-w-2xl text-lg text-secondary sm:text-xl">
+              Codifya, veri odaklı yaklaşımıyla kurumsal şirketlere modern web, mobil ve bulut çözümleri sunar. Her projeyi, hızlı iterasyon ve ölçülebilir başarı kriterleriyle uçtan uca yönetiriz.
             </p>
-
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row gap-3 flex-1"
-              >
-                <div className="flex-1">
-                  <label htmlFor="email" className="sr-only">
-                    E-posta adresiniz
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="E-posta adresinizi girin"
-                    required
-                    disabled={isLoading}
-                    className="w-full px-4 py-3 text-base rounded-lg border border-border bg-background text-foreground placeholder-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 disabled:opacity-50"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={isLoading || !email}
-                  className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[120px]"
-                >
-                  {isLoading ? (
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  ) : (
-                    "Başlayalım"
-                  )}
-                </button>
-              </form>
-            </div>
-
-            {submitted && (
-              <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg animate-slide-up">
-                <p className="text-green-800 flex items-center">
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Teşekkürler! En kısa sürede sizinle iletişime geçeceğiz.
-                </p>
-              </div>
-            )}
-
-            <div className="mt-8 flex items-center space-x-6 text-sm text-secondary">
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 mr-2 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Ücretsiz Danışmanlık
-              </div>
-              <div className="flex items-center">
-                <svg
-                  className="w-5 h-5 mr-2 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                24/7 Destek
-              </div>
-            </div>
           </div>
 
-          <div className="mt-12 lg:mt-0 lg:col-span-6 animate-fade-in">
-            <div className="relative">
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/20 rounded-full blur-2xl"></div>
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-3 rounded-2xl border border-border/60 bg-background/70 p-3 shadow-[0_20px_45px_-25px_rgba(15,23,42,0.35)] backdrop-blur sm:flex-row sm:items-center"
+          >
+            <label className="sr-only" htmlFor="hero-email">
+              İş e-posta adresiniz
+            </label>
+            <input
+              id="hero-email"
+              type="email"
+              value={email}
+              required
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="İş e-posta adresiniz"
+              className="h-12 flex-1 rounded-xl border border-transparent bg-muted/60 px-4 text-base text-foreground placeholder:text-secondary/70 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+              disabled={isLoading}
+            />
+            <button
+              type="submit"
+              disabled={isLoading || !email}
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-6 text-sm font-semibold text-white shadow-[0_20px_40px_-25px_rgba(59,130,246,0.85)] transition-transform duration-200 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isLoading ? (
+                <span className="inline-flex h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              ) : (
+                "Ücretsiz danışmanlık alın"
+              )}
+            </button>
+          </form>
 
-              <div className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-2xl p-8 border border-border">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground">
-                        Hızlı Geliştirme
-                      </h3>
-                      <p className="text-secondary">
-                        Modern araçlarla hızlı çözümler
-                      </p>
-                    </div>
-                  </div>
+          {submitted ? (
+            <div className="rounded-2xl border border-green-200/40 bg-green-50/70 p-4 text-sm font-medium text-green-800 shadow-sm">
+              Teşekkürler! Ekibimiz en kısa sürede sizinle iletişime geçecek.
+            </div>
+          ) : null}
 
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-accent to-primary rounded-lg flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground">
-                        Kaliteli Kod
-                      </h3>
-                      <p className="text-secondary">
-                        Test edilmiş ve güvenilir çözümler
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-foreground">
-                        Uzman Ekip
-                      </h3>
-                      <p className="text-secondary">Deneyimli geliştiriciler</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-border">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-secondary">Müşteri Memnuniyeti</span>
-                    <span className="text-foreground font-semibold">%98</span>
-                  </div>
-                  <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-gradient-to-r from-primary to-accent h-2 rounded-full"
-                      style={{ width: "98%" }}
-                    ></div>
-                  </div>
-                </div>
+          <div className="grid gap-6 sm:grid-cols-3">
+            {stats.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-2xl border border-border/50 bg-background/60 p-5 shadow-[0_12px_35px_-28px_rgba(15,23,42,0.6)] backdrop-blur"
+              >
+                <p className="text-3xl font-semibold text-foreground">{item.value}</p>
+                <p className="mt-2 text-sm text-secondary">{item.label}</p>
               </div>
+            ))}
+          </div>
+
+          <div className="space-y-3">
+            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-secondary/70">
+              Bizimle büyüyen markalar
+            </span>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-base font-medium text-foreground/80">
+              {partners.map((partner) => (
+                <span key={partner} className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
+                  {partner}
+                </span>
+              ))}
             </div>
           </div>
         </div>
-      </div>
+
+        <Card className="relative overflow-hidden">
+          <div className="absolute -right-10 top-16 h-40 w-40 rounded-full bg-accent/20 blur-3xl" />
+          <div className="absolute -left-12 bottom-10 h-36 w-36 rounded-full bg-primary/20 blur-3xl" />
+          <div className="relative space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-primary">Proje Yolculuğu</p>
+                <h2 className="text-2xl font-semibold text-foreground">
+                  6 haftada canlıya çıkış
+                </h2>
+              </div>
+              <div className="rounded-2xl border border-primary/20 bg-primary/10 p-3">
+                <Image src="/window.svg" alt="Dashboard önizlemesi" width={48} height={48} />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {roadmap.map((step, index) => (
+                <div key={step.title} className="flex items-start gap-4 rounded-2xl border border-border/40 bg-background/80 p-4">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary/10 to-accent/10 text-sm font-semibold text-primary">
+                    0{index + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
+                    <p className="mt-1 text-sm text-secondary leading-relaxed">{step.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-2xl border border-border/40 bg-muted/60 p-5 text-sm text-secondary">
+              <p className="font-semibold text-foreground">
+                Her ay sadece 3 yeni projeyi kabul ediyoruz.
+              </p>
+              <p className="mt-2 leading-relaxed">
+                Ücretsiz keşif toplantısında ürün vizyonunuzu değerlendirelim ve ilk yol haritasını birlikte oluşturalım.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </Container>
     </section>
   );
 }

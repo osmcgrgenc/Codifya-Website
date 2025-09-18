@@ -6,23 +6,23 @@ export async function GET() {
       {
         id: '1',
         name: 'Ahmet Yılmaz',
-        role: 'CEO, TechStart',
-        content: 'Codifya ekibi ile çalışmak harika bir deneyimdi. Projemizi zamanında ve beklentilerimizin üzerinde teslim ettiler.',
-        avatar: '/avatars/avatar1.jpg'
+        role: 'CEO, TechStart Banking',
+        content: 'Codifya ile çalışmaya başladıktan sonra lansman sürecimizi 8 haftadan 4 haftaya indirdik. Ürün ekiplerimizle tam bir iç ekip gibi çalıştılar.',
+        avatar: '/avatars/ay.svg'
       },
       {
         id: '2',
         name: 'Elif Kaya',
-        role: 'Pazarlama Müdürü, DigitalCorp',
-        content: 'Web sitemizin yeniden tasarımında gösterdikleri profesyonellik ve yaratıcılık gerçekten etkileyiciydi.',
-        avatar: '/avatars/avatar2.jpg'
+        role: 'CMO, Finora',
+        content: 'Deneyim odaklı yaklaşım sayesinde müşteri edinim funnelımız %37 oranında iyileşti. Tüm kararlar ölçülebilir verilere dayandı.',
+        avatar: '/avatars/ek.svg'
       },
       {
         id: '3',
         name: 'Mehmet Demir',
-        role: 'Kurucu, E-Shop',
-        content: 'E-ticaret platformumuz sayesinde satışlarımız %300 arttı. Teknik destek ekibi de çok yardımcı oluyor.',
-        avatar: '/avatars/avatar3.jpg'
+        role: 'Operasyon Direktörü, Retailfy',
+        content: 'Bulut modernizasyon projemizle 14 ülkedeki operasyonu tek platformda toplamayı başardık. DevOps ekibi hâlâ aktif destek veriyor.',
+        avatar: '/avatars/md.svg'
       }
     ];
 

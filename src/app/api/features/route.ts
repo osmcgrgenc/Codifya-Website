@@ -5,38 +5,38 @@ export async function GET() {
     const features = [
       {
         id: '1',
-        title: 'Modern Teknolojiler',
-        description: 'React, Next.js, TypeScript ve diğer modern teknolojilerle geliştirilmiş çözümler.',
+        title: 'Çapraz disiplinli ekipler',
+        description: 'Ürün, tasarım ve mühendislik ekiplerimiz tek bir sprint ritminde çalışır.',
         icon: '/icons/tech.svg'
       },
       {
         id: '2',
-        title: 'Responsive Tasarım',
-        description: 'Tüm cihazlarda mükemmel görünüm ve kullanıcı deneyimi.',
+        title: 'Deneyim odaklı yaklaşım',
+        description: 'Kullanıcı araştırmaları ve journey haritalarıyla doğru probleme odaklanırız.',
         icon: '/icons/responsive.svg'
       },
       {
         id: '3',
-        title: 'SEO Optimizasyonu',
-        description: 'Arama motorlarında üst sıralarda yer almak için optimize edilmiş yapı.',
+        title: 'Veri destekli karar alma',
+        description: 'Analitik ve ölçümleme altyapısıyla hızlı iterasyon kültürü sağlıyoruz.',
         icon: '/icons/seo.svg'
       },
       {
         id: '4',
-        title: 'Hızlı Performans',
-        description: 'Optimize edilmiş kod yapısı ile yüksek performans ve hızlı yükleme.',
+        title: 'Performans ve güvenlik',
+        description: 'Bulut mimarisi, güvenlik testleri ve izleme araçlarıyla sürdürülebilir sistemler.',
         icon: '/icons/performance.svg'
       },
       {
         id: '5',
-        title: 'Güvenlik',
-        description: 'En son güvenlik standartları ile korumalı ve güvenli uygulamalar.',
+        title: 'DesignOps & DevOps',
+        description: 'Tasarımdan geliştirmeye kadar tüm süreci otomasyonla destekliyoruz.',
         icon: '/icons/security.svg'
       },
       {
         id: '6',
-        title: '7/24 Destek',
-        description: 'Sürekli teknik destek ve bakım hizmetleri.',
+        title: 'Sürekli destek',
+        description: 'Lansman sonrası SLA tanımlı bakım, eğitim ve optimizasyon hizmetleri.',
         icon: '/icons/support.svg'
       }
     ];

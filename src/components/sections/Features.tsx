@@ -1,132 +1,95 @@
 "use client";
 
-import { useCallback } from 'react';
-import useSWR from 'swr';
-import { getFeatures, Feature } from '@/lib/api';
-import { ErrorBoundary } from '../ErrorBoundary';
+import { useCallback } from "react";
+import useSWR from "swr";
+import { Feature, getFeatures } from "@/lib/api";
+import { ErrorBoundary } from "../ErrorBoundary";
+import { Container } from "@/components/ui/Container";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Card } from "@/components/ui/Card";
 
-// Icon components
-const TechIcon = () => (
-  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-  </svg>
-);
-
-const ResponsiveIcon = () => (
-  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-  </svg>
-);
-
-const SEOIcon = () => (
-  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-  </svg>
-);
-
-const PerformanceIcon = () => (
-  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-  </svg>
-);
-
-const SecurityIcon = () => (
-  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-  </svg>
-);
-
-const SupportIcon = () => (
-  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.944l7.071 7.071-7.071 7.071-7.071-7.071L12 2.944z" />
-  </svg>
-);
-
-const iconMap: Record<string, React.ComponentType> = {
-  '1': TechIcon,
-  '2': ResponsiveIcon,
-  '3': SEOIcon,
-  '4': PerformanceIcon,
-  '5': SecurityIcon,
-  '6': SupportIcon,
+const iconMap: Record<string, JSX.Element> = {
+  "1": (
+    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M16.5 6.75H21m-4.5 4.5H21M16.5 16.5H21m-6.75 3.75h-9a1.5 1.5 0 01-1.5-1.5v-13.5a1.5 1.5 0 011.5-1.5h9a1.5 1.5 0 011.5 1.5v13.5a1.5 1.5 0 01-1.5 1.5z" />
+    </svg>
+  ),
+  "2": (
+    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M3 4.5h18v13.5H3z" />
+      <path d="M8.25 19.5h7.5v.75a1.5 1.5 0 01-1.5 1.5h-4.5a1.5 1.5 0 01-1.5-1.5z" />
+    </svg>
+  ),
+  "3": (
+    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M21 21l-5.197-5.197m0 0A6.75 6.75 0 105.197 5.197a6.75 6.75 0 0010.606 10.606z" />
+    </svg>
+  ),
+  "4": (
+    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M12 3l-1.5 9h3L12 21" />
+      <path d="M5 13.5h3m8 0h3" />
+    </svg>
+  ),
+  "5": (
+    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M12 3l8.485 4.125v5.25c0 5.092-3.633 9.815-8.485 10.5-4.852-.685-8.485-5.408-8.485-10.5v-5.25L12 3z" />
+      <path d="M9.75 12l1.5 1.5 3-4.5" />
+    </svg>
+  ),
+  "6": (
+    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M12 3a9 9 0 00-9 9v0a4.5 4.5 0 004.5 4.5h.75v1.5A1.5 1.5 0 009.75 19.5h4.5A1.5 1.5 0 0015.75 18v-1.5h.75A4.5 4.5 0 0021 12v0a9 9 0 00-9-9z" />
+    </svg>
+  ),
 };
 
-function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
-  const IconComponent = iconMap[feature.id] || TechIcon;
-  
-  return (
-    <div 
-      className="group relative bg-background border border-border rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in"
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      
-      <div className="relative">
-        <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300">
-          <IconComponent />
-        </div>
-        
-        <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
-          {feature.title}
-        </h3>
-        
-        <p className="text-secondary leading-relaxed">
-          {feature.description}
-        </p>
-        
-        <div className="mt-6 flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span className="text-sm font-medium">Daha fazla bilgi</span>
-          <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FeaturesList() {
-  const { data: features, error, isLoading } = useSWR<Feature[]>('features', getFeatures, {
+function FeaturesGrid() {
+  const { data, error, isLoading } = useSWR<Feature[]>("features", getFeatures, {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
-    dedupingInterval: 60000,
+    dedupingInterval: 60_000,
   });
 
   if (error) {
     return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-          </svg>
-        </div>
-        <p className="text-red-500 font-medium">Özellikler yüklenirken bir hata oluştu.</p>
-        <p className="text-secondary text-sm mt-2">Lütfen sayfayı yenileyin veya daha sonra tekrar deneyin.</p>
+      <div className="rounded-3xl border border-red-200/50 bg-red-50/70 p-10 text-center text-red-600">
+        Özellikler yüklenirken bir sorun oluştu. Lütfen sayfayı yenileyin.
       </div>
     );
   }
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[...Array(6)].map((_, i) => (
-          <div key={i} className="animate-pulse bg-background border border-border rounded-2xl p-8">
-            <div className="w-16 h-16 bg-muted rounded-xl mb-6"></div>
-            <div className="h-6 bg-muted rounded-lg w-3/4 mb-4"></div>
-            <div className="space-y-2">
-              <div className="h-4 bg-muted rounded w-full"></div>
-              <div className="h-4 bg-muted rounded w-2/3"></div>
-            </div>
-          </div>
+      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div key={index} className="h-48 animate-pulse rounded-3xl border border-border/40 bg-muted/60" />
         ))}
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {features?.map((feature, index) => (
-        <FeatureCard key={feature.id} feature={feature} index={index} />
+    <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      {data?.map((feature) => (
+        <Card key={feature.id}>
+          <div className="space-y-5">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 via-primary/10 to-accent/15 text-primary">
+              {iconMap[feature.id]}
+            </span>
+            <div className="space-y-2">
+              <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
+              <p className="text-sm leading-relaxed text-secondary">{feature.description}</p>
+            </div>
+            <button className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors duration-200 hover:text-primary/80">
+              Daha fazla bilgi
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14" />
+                <path d="M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </Card>
       ))}
     </div>
   );
@@ -134,18 +97,16 @@ function FeaturesList() {
 
 function ErrorFallback({ resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
   return (
-    <div className="text-center py-12">
-      <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-        <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-        </svg>
-      </div>
-      <p className="text-red-500 font-medium mb-4">Bir şeyler yanlış gitti.</p>
+    <div className="rounded-3xl border border-border/50 bg-background/80 p-10 text-center shadow-sm">
+      <h3 className="text-xl font-semibold text-foreground">Beklenmedik bir hata oluştu</h3>
+      <p className="mt-3 text-sm text-secondary">
+        Sayfayı yenileyerek tekrar deneyebilirsiniz.
+      </p>
       <button
         onClick={resetErrorBoundary}
-        className="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
+        className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent px-6 py-2 text-sm font-semibold text-white"
       >
-        Tekrar Dene
+        Yeniden Dene
       </button>
     </div>
   );
@@ -157,30 +118,21 @@ export default function Features() {
   }, []);
 
   return (
-    <section id="features" className="py-20 bg-muted">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 mb-6">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            Özelliklerimiz
-          </div>
-          
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
-            Neden <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Codifya</span>?
-          </h2>
-          
-          <p className="text-xl text-secondary max-w-3xl mx-auto leading-relaxed">
-            Modern teknolojiler ve yenilikçi yaklaşımlarla, işletmenizin dijital dönüşümünde 
-            güvenilir ortağınız oluyoruz.
-          </p>
-        </div>
-        
+    <section id="features" className="relative overflow-hidden py-24">
+      <div className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-muted/40 to-transparent" />
+
+      <Container className="space-y-16">
+        <SectionHeader
+          eyebrow="Kabiliyetlerimiz"
+          title="Her aşamada güvenebileceğiniz mühendislik kültürü"
+          subtitle="Ürün stratejisinden canlı destek süreçlerine kadar ekiplerinizle entegre çalışan uçtan uca çözümler sunuyoruz."
+        />
+
         <ErrorBoundary FallbackComponent={ErrorFallback} onReset={handleReset}>
-          <FeaturesList />
+          <FeaturesGrid />
         </ErrorBoundary>
-      </div>
+      </Container>
     </section>
   );
-} 
+}

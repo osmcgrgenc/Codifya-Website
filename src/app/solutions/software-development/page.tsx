@@ -1,34 +1,98 @@
 "use client";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { PageHero } from "@/components/layout/PageHero";
+import { Container } from "@/components/ui/Container";
+import { Card } from "@/components/ui/Card";
+
+const capabilities = [
+  {
+    title: "Web & Mobil Uygulamalar",
+    description: "React, Next.js ve React Native gibi modern teknolojilerle performanslı ürünler geliştiriyoruz.",
+  },
+  {
+    title: "Platform ve API",
+    description: "Mikro servis mimarisi, GraphQL ve REST API tasarımı ile ölçeklenebilir altyapılar kuruyoruz.",
+  },
+  {
+    title: "DevOps ve Otomasyon",
+    description: "CI/CD, container orkestrasyonu ve gözlemlenebilirlik çözümleriyle canlı operasyonu güvence altına alıyoruz.",
+  },
+];
+
+const deliverables = [
+  "Teknik keşif ve mimari değerlendirme",
+  "Sprint planlama, çevik proje yönetimi",
+  "Test otomasyonu ve kalite güvence",
+  "Canlıya alma, bakım ve destek",
+];
 
 export default function SoftwareDevelopment() {
   return (
-    <div className="min-h-screen bg-white text-gray-800 font-sans">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Software Development</h1>
-        <div className="prose prose-lg max-w-none">
-          <p className="text-xl text-gray-600 mb-6">
-            We build custom software solutions that help businesses grow and innovate.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Custom Software Development</h2>
-              <p className="text-gray-600">
-                Tailored solutions designed to meet your specific business needs and challenges.
+      <main className="space-y-16 pb-24 pt-28">
+        <PageHero
+          eyebrow="Ürün Mühendisliği"
+          title="Stratejiden canlıya kadar uçtan uca yazılım geliştirme"
+          description="Kurumsal ekiplerle birlikte çalışarak, iş hedeflerinize uygun ölçeklenebilir ürünler geliştiriyoruz."
+        />
+
+        <section>
+          <Container className="grid gap-6 lg:grid-cols-3">
+            {capabilities.map((item) => (
+              <Card key={item.title}>
+                <div className="space-y-3">
+                  <h2 className="text-xl font-semibold text-foreground">{item.title}</h2>
+                  <p className="text-sm text-secondary">{item.description}</p>
+                </div>
+              </Card>
+            ))}
+          </Container>
+        </section>
+
+        <section>
+          <Container className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="space-y-4">
+              <h3 className="text-3xl font-semibold text-foreground">Nasıl çalışıyoruz?</h3>
+              <p className="text-lg text-secondary">
+                Çevik metodolojilerle sprint bazlı ilerlerken, ürün yöneticileri ve tasarımcılarla yakın çalışarak en doğru çözüme ulaşırız.
               </p>
+              <ul className="space-y-3 text-sm text-secondary">
+                {deliverables.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Enterprise Solutions</h2>
-              <p className="text-gray-600">
-                Scalable and secure software for large organizations with complex requirements.
-              </p>
-            </div>
-          </div>
-        </div>
+            <Card>
+              <div className="space-y-4">
+                <p className="text-sm font-semibold uppercase tracking-widest text-secondary/70">Ölçülebilir çıktılar</p>
+                <ul className="space-y-3 text-sm text-secondary">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
+                    6 haftada MVP lansmanı
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
+                    OTA ve versiyonlama stratejileri
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
+                    SLA tanımlı bakım ve destek
+                  </li>
+                </ul>
+                <button className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-white">
+                  Teknik toplantı planla
+                </button>
+              </div>
+            </Card>
+          </Container>
+        </section>
       </main>
       <Footer />
     </div>
   );
-} 
+}

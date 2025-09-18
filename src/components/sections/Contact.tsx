@@ -1,141 +1,145 @@
+import { Container } from "@/components/ui/Container";
+import { Card } from "@/components/ui/Card";
+
+const contactChannels = [
+  {
+    title: "Satış Soruları",
+    description: "Yeni projeler, teklif ve demo talepleri için satış ekibimizle görüşün.",
+    value: "hello@codifya.com",
+    type: "email",
+  },
+  {
+    title: "Teknik Destek",
+    description: "Canlı projeleriniz için 7/24 teknik destek hattı.",
+    value: "+90 212 123 45 67",
+    type: "phone",
+  },
+  {
+    title: "Ofis",
+    description: "Maslak Mah. Ahi Evran Cad. No:11 Sarıyer / İstanbul",
+    value: "Haritada görüntüle",
+    type: "location",
+  },
+];
+
 export default function Contact() {
   return (
-    <section id="contact" className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-base font-semibold text-indigo-600 tracking-wide uppercase">Contact Us</h2>
-          <p className="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Let&apos;s Start a Conversation
-          </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            Reach out to learn more about our services or to start your next project.
-          </p>
-        </div>
+    <section id="contact" className="relative overflow-hidden py-24">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-muted/70 to-background" />
+      <div className="absolute inset-x-0 top-12 -z-10 h-40 bg-gradient-to-r from-primary/20 via-transparent to-accent/20 blur-3xl" />
 
-        <div className="mt-12 lg:grid lg:grid-cols-2 lg:gap-8">
-          <div>
-            <h3 className="text-lg font-medium text-gray-900">Send us a message</h3>
-            <form className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-              <div>
-                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                  First name
-                </label>
-                <div className="mt-1">
+      <Container className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="space-y-6">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
+            İletişime Geçin
+          </span>
+          <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">
+            Birlikte etkileyici dijital deneyimler üretelim
+          </h2>
+          <p className="text-lg text-secondary">
+            Projenizi, hedeflerinizi ve teknik gereksinimlerinizi dinleyelim.
+            48 saat içinde kapsamlı bir yol haritası ve teklif hazırlayalım.
+          </p>
+
+          <Card>
+            <form className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="text-sm font-medium text-secondary" htmlFor="contact-name">
+                  Adınız Soyadınız
                   <input
+                    id="contact-name"
+                    name="name"
                     type="text"
-                    name="first-name"
-                    id="first-name"
-                    autoComplete="given-name"
-                    className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                    placeholder="Ör. Elif Kaya"
+                    className="mt-2 h-12 w-full rounded-xl border border-border/60 bg-background/80 px-4 text-sm text-foreground placeholder:text-secondary/60 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
                   />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                  Last name
                 </label>
-                <div className="mt-1">
+                <label className="text-sm font-medium text-secondary" htmlFor="contact-email">
+                  İş E-postanız
                   <input
-                    type="text"
-                    name="last-name"
-                    id="last-name"
-                    autoComplete="family-name"
-                    className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-              <div className="sm:col-span-2">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="email"
+                    id="contact-email"
                     name="email"
                     type="email"
-                    autoComplete="email"
-                    className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                    placeholder="ornek@firma.com"
+                    className="mt-2 h-12 w-full rounded-xl border border-border/60 bg-background/80 px-4 text-sm text-foreground placeholder:text-secondary/60 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
                   />
-                </div>
-              </div>
-              <div className="sm:col-span-2">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                  Message
                 </label>
-                <div className="mt-1">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    className="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                    defaultValue={""}
-                  />
-                </div>
               </div>
-              <div className="sm:col-span-2">
-                <button
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
-                >
-                  Send Message
-                </button>
-              </div>
+              <label className="text-sm font-medium text-secondary" htmlFor="contact-company">
+                Şirketiniz
+                <input
+                  id="contact-company"
+                  name="company"
+                  type="text"
+                  placeholder="Şirket Adı"
+                  className="mt-2 h-12 w-full rounded-xl border border-border/60 bg-background/80 px-4 text-sm text-foreground placeholder:text-secondary/60 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                />
+              </label>
+              <label className="text-sm font-medium text-secondary" htmlFor="contact-message">
+                Projenizi anlatın
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows={4}
+                  placeholder="Konu, hedefler ve mevcut teknoloji altyapısı hakkında bilgi verin." 
+                  className="mt-2 w-full rounded-xl border border-border/60 bg-background/80 px-4 py-3 text-sm text-foreground placeholder:text-secondary/60 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                />
+              </label>
+              <button
+                type="submit"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-white shadow-[0_20px_40px_-25px_rgba(59,130,246,0.9)] transition-transform duration-200 hover:scale-[1.01]"
+              >
+                Görüşme talep et
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="M12 5l7 7-7 7" />
+                </svg>
+              </button>
+              <p className="text-xs text-secondary">
+                Form verileri yalnızca iletişim için kullanılır. <a href="/legal/privacy" className="text-primary underline">Gizlilik Politikasını</a> inceleyebilirsiniz.
+              </p>
             </form>
-          </div>
-          <div className="mt-12 lg:mt-0">
-            <h3 className="text-lg font-medium text-gray-900">Contact Information</h3>
-            <p className="mt-6 text-base text-gray-500">
-              Ready to talk? We&apos;d love to hear from you. You can reach us through any of the methods below:
+          </Card>
+        </div>
+
+        <div className="space-y-6">
+          <Card>
+            <h3 className="text-lg font-semibold text-foreground">Çağrı Merkezimiz</h3>
+            <p className="mt-2 text-sm text-secondary">
+              Hafta içi 09:00 - 19:00 saatleri arasında ürün danışmanlarımız sorularınızı yanıtlıyor.
             </p>
-            <div className="mt-8">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
+            <div className="mt-6 space-y-5">
+              {contactChannels.map((channel) => (
+                <div key={channel.title} className="rounded-2xl border border-border/40 bg-background/60 p-4">
+                  <p className="text-sm font-semibold text-foreground">{channel.title}</p>
+                  <p className="mt-1 text-sm text-secondary">{channel.description}</p>
+                  <p className="mt-3 text-sm font-medium text-primary">{channel.value}</p>
                 </div>
-                <div className="ml-4">
-                  <h4 className="text-sm font-medium text-gray-900">Phone</h4>
-                  <p className="mt-1 text-base text-gray-500">+1 (555) 123-4567</p>
-                </div>
+              ))}
+            </div>
+          </Card>
+
+          <Card>
+            <h3 className="text-lg font-semibold text-foreground">Toplantı Takvimi</h3>
+            <p className="mt-2 text-sm text-secondary">
+              Proje kapsamınız doğrultusunda 30 dakikalık çevrim içi bir keşif görüşmesi planlayalım.
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-border/40 bg-muted/50 p-4 text-sm text-secondary">
+                <p className="font-semibold text-foreground">Ücretsiz keşif</p>
+                <p className="mt-1">Ürün vizyonu analizi ve teknik yol haritası.</p>
               </div>
-              <div className="mt-8">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-sm font-medium text-gray-900">Email</h4>
-                    <p className="mt-1 text-base text-gray-500">hello@codifya.com</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="text-sm font-medium text-gray-900">Location</h4>
-                    <p className="mt-1 text-base text-gray-500">San Francisco, CA</p>
-                  </div>
-                </div>
+              <div className="rounded-2xl border border-border/40 bg-muted/50 p-4 text-sm text-secondary">
+                <p className="font-semibold text-foreground">Teknik workshop</p>
+                <p className="mt-1">Mimari değerlendirme ve PoC planlaması.</p>
               </div>
             </div>
-          </div>
+            <button className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-6 py-3 text-sm font-semibold text-primary transition-colors duration-200 hover:bg-primary/20">
+              Takvimden slot seç
+            </button>
+          </Card>
         </div>
-      </div>
+      </Container>
     </section>
   );
-} 
+}

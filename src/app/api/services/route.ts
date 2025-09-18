@@ -5,38 +5,38 @@ export async function GET() {
     const services = [
       {
         id: '1',
-        title: 'Web Geliştirme',
-        description: 'Modern web uygulamaları ve kurumsal web siteleri geliştirme.',
+        title: 'Ürün Mühendisliği',
+        description: 'Web, mobil ve platform çözümlerini modern teknoloji yığınlarıyla geliştiriyoruz.',
         icon: '/icons/web-dev.svg'
       },
       {
         id: '2',
-        title: 'Mobil Uygulama',
-        description: 'iOS ve Android platformları için native ve cross-platform uygulamalar.',
+        title: 'Mobil Deneyim',
+        description: 'iOS ve Android için performanslı native ve cross-platform uygulamalar.',
         icon: '/icons/mobile.svg'
       },
       {
         id: '3',
-        title: 'E-Ticaret Çözümleri',
-        description: 'Kapsamlı e-ticaret platformları ve ödeme sistemleri entegrasyonu.',
+        title: 'E-Ticaret Platformları',
+        description: 'Headless mimari, çok kanallı deneyim ve ödeme entegrasyonları sunuyoruz.',
         icon: '/icons/ecommerce.svg'
       },
       {
         id: '4',
-        title: 'UI/UX Tasarım',
-        description: 'Kullanıcı odaklı arayüz tasarımı ve kullanıcı deneyimi optimizasyonu.',
+        title: 'Deneyim Tasarımı',
+        description: 'Araştırma odaklı UI/UX tasarımı ve ölçeklenebilir design system kurulumu.',
         icon: '/icons/design.svg'
       },
       {
         id: '5',
-        title: 'Cloud Çözümleri',
-        description: 'AWS, Azure ve Google Cloud platformlarında bulut altyapı çözümleri.',
+        title: 'Bulut Modernizasyonu',
+        description: 'AWS, Azure ve GCP üzerinde güvenli ve optimize altyapılar inşa ediyoruz.',
         icon: '/icons/cloud.svg'
       },
       {
         id: '6',
-        title: 'Danışmanlık',
-        description: 'Dijital dönüşüm ve teknoloji stratejileri konusunda uzman danışmanlık.',
+        title: 'Stratejik Danışmanlık',
+        description: 'Dijital dönüşüm yol haritası, süreç tasarımı ve ekip yapılandırmasında rehberlik.',
         icon: '/icons/consulting.svg'
       }
     ];

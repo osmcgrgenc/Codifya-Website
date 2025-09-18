@@ -8,6 +8,9 @@ import Image from "next/image";
 import { remark } from "remark";
 import html from "remark-html";
 import { Metadata } from "next";
+import { PageHero } from "@/components/layout/PageHero";
+import { Container } from "@/components/ui/Container";
+import { Card } from "@/components/ui/Card";
 
 interface BlogPostFrontmatter {
   title: string;
@@ -17,20 +20,17 @@ interface BlogPostFrontmatter {
   cover?: string;
 }
 
-// ISR için revalidate süresini 1 saat olarak ayarlıyoruz
 export const revalidate = 3600;
 
-// Statik parametreleri oluştur
 export async function generateStaticParams() {
   const postsDirectory = path.join(process.cwd(), "src/content/blog");
   const filenames = fs.readdirSync(postsDirectory);
-  
+
   return filenames.map((filename) => ({
     slug: filename.replace(/\.md$/, ""),
   }));
 }
 
-// Metadata oluştur
 export async function generateMetadata({
   params,
 }: {
@@ -38,7 +38,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const postPath = path.join(process.cwd(), "src/content/blog", `${slug}.md`);
-  
+
   if (!fs.existsSync(postPath)) {
     return {
       title: "Blog Post Not Found",
@@ -63,7 +63,6 @@ export async function generateMetadata({
   };
 }
 
-// Blog detay sayfası
 export default async function BlogDetailPage({
   params,
 }: {
@@ -71,7 +70,7 @@ export default async function BlogDetailPage({
 }) {
   const { slug } = await params;
   const postPath = path.join(process.cwd(), "src/content/blog", `${slug}.md`);
-  
+
   if (!fs.existsSync(postPath)) {
     notFound();
   }
@@ -83,38 +82,38 @@ export default async function BlogDetailPage({
   const contentHtml = processedContent.toString();
 
   return (
-    <>
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main className="max-w-3xl mx-auto py-16 px-4">
-        <article>
-          <header className="mb-8">
-            {frontmatter.cover && (
+      <main className="space-y-12 pb-24 pt-28">
+        <PageHero
+          eyebrow={`${frontmatter.date} • ${frontmatter.author}`}
+          title={frontmatter.title}
+          description={frontmatter.summary}
+          align="center"
+        />
+
+        <Container className="space-y-10">
+          {frontmatter.cover ? (
+            <div className="overflow-hidden rounded-3xl">
               <Image
                 src={frontmatter.cover}
                 alt={frontmatter.title}
-                width={640}
-                height={320}
-                className="rounded-lg object-cover mb-4"
+                width={1280}
+                height={640}
+                className="h-auto w-full"
                 priority
               />
-            )}
-            <h1 className="text-4xl font-bold text-primary mb-2">
-              {frontmatter.title}
-            </h1>
-            <div className="text-sm text-secondary mb-2">
-              <time dateTime={frontmatter.date}>{frontmatter.date}</time>
-              {" • "}
-              <span>{frontmatter.author}</span>
             </div>
-            <p className="text-base text-gray-400 mb-6">{frontmatter.summary}</p>
-          </header>
-          <div
-            className="prose prose-lg prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
-        </article>
+          ) : null}
+          <Card>
+            <div
+              className="prose prose-lg max-w-none text-foreground prose-headings:text-foreground prose-p:text-secondary prose-strong:text-foreground prose-a:text-primary"
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+          </Card>
+        </Container>
       </main>
       <Footer />
-    </>
+    </div>
   );
-} 
+}
